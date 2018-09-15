@@ -4,17 +4,44 @@ const getArticles = (req, res, next) => {
   Article.find()
     .populate('created_by', '-__v')
     .then(articles => {
-      res.status(200).send({ articles });
+      return Promise.all([
+        articles,
+        ...articles.map(article => {
+          const commentCount = Comments.count({ belongs_to: article._id });
+          return commentCount;
+        })
+      ]);
     })
-    .catch(next);
+    .then(([articles, ...commentCount]) => {
+      return Promise.all([
+        articles.map((article, index) => {
+          return {
+            ...article._doc,
+            comments: commentCount[index]
+          };
+        })
+      ])
+        .then(([newArticles]) => {
+          res.status(200).send(newArticles);
+        })
+        .catch(next);
+    });
 };
 
 const getArticleById = (req, res, next) => {
-  Article.findById(req.params.article_id, '-__v')
-    .populate('created_by', '-_id name')
-    .then(article => {
-      if (!article) throw { msg: 'Article Not Found', status: 404 };
-      else res.status(200).send({ article });
+  Comments.count({ belongs_to: req.params.article_id })
+    .then(commentCount => {
+      if (!commentCount || commentCount < 0) {
+        throw { status: 404 };
+      } else
+        return Article.findById(req.params.article_id, '-__v')
+          .populate('created_by', '-_id')
+          .then(articleOne => {
+            const article = { ...articleOne._doc, commentCount };
+            if (!article) {
+              throw { msg: 'Article Not Found', status: 404 };
+            } else res.status(200).send({ article });
+          });
     })
     .catch(next);
 };

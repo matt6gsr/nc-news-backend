@@ -146,7 +146,21 @@ describe('/api', () => {
         .get('/api/articles')
         .expect(200)
         .then(res => {
-          expect(res.body.articles).to.have.length(articles.length);
+          expect(res.body[0].title).to.equal(
+            'Living in the shadow of a great man'
+          );
+          expect(res.body.length).to.equal(4);
+        });
+    });
+    it('GET returns a comment count for each article and a status code 200', () => {
+      return request
+        .get('/api/articles')
+        .expect(200)
+        .then(res => {
+          expect(res.body[0].comments).to.equal(2);
+          expect(res.body[1].comments).to.equal(2);
+          expect(res.body[2].comments).to.equal(2);
+          expect(res.body[3].comments).to.equal(2);
         });
     });
     it('GET responds with a 404 for an invalid route', () => {
@@ -167,17 +181,68 @@ describe('/api', () => {
           expect(res.body.article.title).to.equal(articles[0].title);
         });
     });
+    it('GET returns a comment count for a successfull get on the searched for id and gives a status code 200', () => {
+      return request
+        .get(`/api/articles/${articles[0]._id}`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.article.commentCount).to.equal(2);
+        });
+    });
     it('GET returns a 404 error code for a vaild format id but that id does not exist in database', () => {
       return request
         .get('/api/articles/5b9925e956599b430f57bec0')
         .expect(404)
         .then(res => {
-          expect(res.body.msg).to.equal('Article Not Found');
+          //console.log(res);
+          expect(res.body.msg).to.equal('ID Not Found');
         });
     });
     it('GET returns a 400 error code for a invaild mongo id', () => {
       return request
         .get('/api/articles/abc')
+        .expect(400)
+        .then(res => {
+          expect(res.body.msg).to.equal(
+            'Cast to ObjectId failed for value "abc" at path "belongs_to" for model "comments"'
+          );
+        });
+    });
+    it('PATCH returns a status code 200 and increments the vote count of the article searched for by id by one', () => {
+      return request
+        .patch(`/api/articles/${articles[0]._id}?vote=up`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.article.votes).to.equal(1);
+        });
+    });
+    it('PATCH returns a status code 200 and decrements the vote count of the article searched for by id by one', () => {
+      return request
+        .patch(`/api/articles/${articles[0]._id}?vote=down`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.article.votes).to.equal(-1);
+        });
+    });
+    it('PATCH returns a status code 200 and does not change the vote count of the article searched for by id if an invalid vote param is entered', () => {
+      return request
+        .patch(`/api/articles/${articles[0]._id}?vote=do`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.article.votes).to.equal(0);
+        });
+    });
+    it('PATCH returns a status code 404 when an atempt to vote on an article when the id is valid but it does not exist in the database', () => {
+      return request
+        .patch('/api/articles/5b9925e956599b430f57bec0?vote=up')
+        .expect(404)
+        .then(res => {
+          expect(res.body.msg).to.equal('Article Not Found');
+        });
+    });
+    it('PATCH returns a status code 404 when an atempt to vote on an article when the id is valid but it does not exist in the database', () => {
+      return request
+        .patch('/api/articles/abc?vote=up')
         .expect(400)
         .then(res => {
           expect(res.body.msg).to.equal(
@@ -289,6 +354,109 @@ describe('/api', () => {
         .expect(404)
         .then(res => {
           expect(res.body.msg).to.equal('Article  Not Found');
+        });
+    });
+  });
+  describe('/api/comments/:comment_id', () => {
+    it('PATCH returns a status code 200 and increments the vote count of the comment searched for by id by one', () => {
+      return request
+        .patch(`/api/comments/${comments[0]._id}?vote=up`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.comment.votes).to.equal(8);
+        });
+    });
+    it('PATCH returns a status code 200 and decrements the vote count of the comment searched for by id by one', () => {
+      return request
+        .patch(`/api/comments/${comments[0]._id}?vote=down`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.comment.votes).to.equal(6);
+        });
+    });
+    it('PATCH returns a status code 200 and does not change the vote count of the comment searched for by id if an invalid vote param is entered', () => {
+      return request
+        .patch(`/api/comments/${comments[0]._id}?vote=do`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.comment.votes).to.equal(7);
+        });
+    });
+    it('PATCH returns a status code 404 when an atempt to vote on a comment when the id is valid but it does not exist in the database', () => {
+      return request
+        .patch('/api/comments/5b9925e956599b430f57bec0?vote=up')
+        .expect(404)
+        .then(res => {
+          expect(res.body.msg).to.equal('Comment Not Found');
+        });
+    });
+    it('PATCH returns a status code 404 when an atempt to vote on a comment when the id is valid but it does not exist in the database', () => {
+      return request
+        .patch('/api/comments/abc?vote=up')
+        .expect(400)
+        .then(res => {
+          expect(res.body.msg).to.equal(
+            'Cast to ObjectId failed for value "abc" at path "_id" for model "comments"'
+          );
+        });
+    });
+    it('DELETE deletes a comment searched for by valid id and returns a status code 200', () => {
+      return request
+        .delete(`/api/comments/${comments[0]._id}`)
+        .expect(200)
+        .then(res => {
+          expect(res.body.message).to.equal('Comment Removed Successfully');
+          expect(res.body.comment).to.contain.keys(
+            'votes',
+            '_id',
+            'body',
+            'created_by',
+            'belongs_to',
+            'created_at',
+            '__v'
+          );
+        });
+    });
+    it('DELETE responds with a 404 error code if the comment id is formatted correctly but it does not exist in the database', () => {
+      return request
+        .delete('/api/comments/5b9925e956599b430f57bec0')
+        .expect(404)
+        .then(res => {
+          expect(res.body.msg).to.equal('Comment Not Found');
+        });
+    });
+    it('DELETE responds with a 400 error code for an invalid id', () => {
+      return request
+        .delete('/api/comments/abc')
+        .expect(400)
+        .then(res => {
+          expect(res.body.msg).to.equal(
+            'Cast to ObjectId failed for value "abc" at path "_id" for model "comments"'
+          );
+        });
+    });
+  });
+  describe('/api/users/:username', () => {
+    it('GET returns a JSON object containing the profile data for the user searched for by username', () => {
+      return request
+        .get('/api/users/dedekind561')
+        .expect(200)
+        .then(res => {
+          expect(res.body.user).to.contain.keys(
+            '_id',
+            'username',
+            'name',
+            'avatar_url'
+          );
+          expect(res.body.user.name).to.equal('mitch');
+        });
+    });
+    it('GET returns error code 404 for a valid username not in the database', () => {
+      return request
+        .get('/api/users/abc')
+        .expect(404)
+        .then(res => {
+          expect(res.body.msg).to.equal('User Not Found');
         });
     });
   });

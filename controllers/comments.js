@@ -1,9 +1,16 @@
 const { Comments } = require('../models');
 
 const deleteComment = (req, res, next) => {
-  Comments.findByIdAndRemove(req.params.comment_id).then(comment => {
-    res.status(200).send({ message: 'Comment Removed Successfully' });
-  });
+  Comments.findByIdAndRemove(req.params.comment_id)
+    .then(comment => {
+      if (!comment) {
+        throw { msg: 'Comment Not Found', status: 404 };
+      } else
+        res
+          .status(200)
+          .send({ comment, message: 'Comment Removed Successfully' });
+    })
+    .catch(next);
 };
 
 const rateComment = (req, res, next) => {
@@ -19,10 +26,7 @@ const rateComment = (req, res, next) => {
     .then(comment => {
       if (!comment) {
         throw { msg: 'Comment Not Found', status: 404 };
-      } else
-        res
-          .status(200)
-          .send({ comment, message: "You're Vote Has Been Taken" });
+      } else res.status(200).send({ comment, message: 'Vote Taken' });
     })
     .catch(next);
 };
