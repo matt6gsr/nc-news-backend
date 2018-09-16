@@ -214,8 +214,14 @@ My API is availible via the link below:
 ## Links
 
 - [Node](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
 - [Express](https://expressjs.com/)
 - [EJS](http://ejs.co/)
+- [body-parser](https://www.npmjs.com/package/body-parser)
+- [mocha](https://www.npmjs.com/package/mocha)
+- [chai](https://www.npmjs.com/package/chai)
+- [supertest](https://www.npmjs.com/package/supertest)
+- [nodemon](https://www.npmjs.com/package/nodemon)
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [Postman](https://www.getpostman.com/)
