@@ -1,6 +1,6 @@
 ## NORTHCODERS NEWS BACKEND PROJECT
 
-Northcoders News is a project to show understanding in JavaScript project development. In this backend section, I have built a restful API using mongoDB to store the data, express to build the server and mongoose to retrieve and manipulate the data.
+Northcoders News is a project to show understanding in JavaScript project development. In this backend section, I have built a restful API using MongoDB to store the data, express to build the server and mongoose to retrieve and manipulate the data.
 Below are some of the mongoose models used in this API:
 
 - [find](http://mongoosejs.com/docs/api.html#model_Model.find)
@@ -32,13 +32,19 @@ Once forked, clone the repo address and using the terminal window run the comman
 git clone https://github.com/matt6gsr/BE2-northcoders-news
 ```
 
-To install all required dependencies, run the command:
+CD into this repo/folder. To install the required dependencies, run the command:
 
 ```
 npm install
 ```
 
-Please check you have mongoDB installed:
+MongoDB is not a dependency, it is a database type and won't be installed automatically.
+
+More infomation on MongoDB can be found in the link below:
+
+- [MongoDB Website](https://www.mongodb.com/)
+
+To check this is installed on your machine, run the command:
 
 ```
 mongo -version
@@ -46,7 +52,7 @@ mongo -version
 
 If mongoDB is not installed, visit the MongoDB website in the link below and follow installation instructions:
 
-- [MongoDB installation instructions](https://www.mongodb.com/)
+- [MongoDB installation instructions](https://docs.mongodb.com/manual/installation/)
 
 To interact with the database, start mongoDB listening by using the command:
 
@@ -204,6 +210,17 @@ Note: Remember to remove the `.only` from the tests when finished.
 My API is availible via the link below:
 
 [heroku link here]()
+
+## Links
+
+- [Node](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [EJS](http://ejs.co/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [Postman](https://www.getpostman.com/)
+- [mLab](https://mlab.com/)
+- [Heroku](https://www.heroku.com)
 
 ## Acknowledgments
 
