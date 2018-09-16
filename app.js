@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const apiRouter = require('./routes/api-router');
-const DB_URL = require('./config.js');
+const DB_URL = process.env.DB_URL || require('./config.js');
 const bodyParser = require('body-parser');
 const {
   handle404,
@@ -18,11 +18,13 @@ mongoose
   })
   .catch(console.log);
 
+app.set('view engine', 'ejs');
+
 app.use(bodyParser.json());
 app.use('/api', apiRouter);
 
 app.get('/', (req, res, next) => {
-  res.status(200).send('Welcome to the Home Page');
+  res.status(200).render('index');
 });
 
 app.get('/*', (req, res) => {

@@ -21,7 +21,7 @@ Below are some of the mongoose models used in this API:
 
 To interact with this API on your local machine please visit my github repo here:
 
-```
+```http
 https://github.com/matt6gsr/BE2-northcoders-news
 ```
 
@@ -62,7 +62,7 @@ npm run dev
 
 To reach the GET end points, the quickest option is to open a new web browser window and type in the URL:
 
-```
+```http
 localhost:9090/api
 ```
 
@@ -199,7 +199,7 @@ Note: Remember to remove the `.only` from the tests when finished.
 
 ## Hosting
 
-[Heroku](https://www.heroku.com) is a hosting website where projects like these can be uploaded, providing an enviroment outside of localhost to navigate the end points through your favorite web browser. The database is not seeded on Heroku. This is done on [mLab](https://mlab.com/) and negates the need for the user to download and create a database locally.
+[Heroku](https://www.heroku.com) is a hosting website where projects like these can be uploaded; providing an enviroment outside of localhost to navigate the end points through your favorite web browser. The database is not seeded on Heroku. This is done on [mLab](https://mlab.com/) and negates the need for the user to download and create a database locally.
 
 My API is availible via the link below:
 

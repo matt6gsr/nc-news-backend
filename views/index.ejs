@@ -1,0 +1,86 @@
+<html>
+<header>
+  <title>Northcoders News API</title>
+</header>
+
+<body>
+  <h1>
+    Northcoders News API
+  </h1>
+  
+  <p>
+    GET<br>
+    /api/topics <br>
+    Get all the topics 
+  </p>
+
+  
+  <p>
+    GET<br>
+    /api/topics/:topic_slug/articles<br>
+    Return all the articles for a certain topic<br>
+    e.g: /api/topics/football/articles
+  </p>
+    
+  <p>
+    POST<br>
+    /api/topics/:topic_slug/articles<br>
+    Add a new article to a topic. This route requires a JSON body with title and body key value pairs<br>
+    e.g: { "title": "new article", "body": "This is my new article content", "created_by": "user_id goes here"}
+  </p>
+  
+  <p>
+    GET<br> 
+    /api/articles<br>
+    Returns all the articles
+  </p>
+  
+  <p>
+    GET<br>
+    /api/articles/:article_id<br>
+    Get an individual article  
+  </p>
+  
+  <p>
+    GET<br>
+    /api/articles/:article_id/comments<br>
+    Get all the comments for a individual article
+  </p>
+  
+  <p>
+    POST<br>
+      /api/articles/:article_id/comments<br>
+      Add a new comment to an article. This route requires a JSON body with body and created_by key value pairs<br>
+      e.g: {"body": "This is my new comment", "created_by": "user_id goes here"}
+  </p>
+  
+  <p>
+  PATCH<br>
+    /api/articles/:article_id<br>
+    Increment or Decrement the votes of an article by one. This route requires a vote query of 'up' or 'down'<br>
+    e.g: /api/articles/:article_id?vote=up
+  </p>
+  
+  <p>
+PATCH<br>
+   /api/comments/:comment_id<br>
+   Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down'<br>
+   e.g: /api/comments/:comment_id?vote=down
+  </p>
+  
+  <p>
+ DELETE<br>
+   /api/comments/:comment_id<br>
+   Deletes a comment
+  </p>
+  
+  <p>
+GET <br>
+  /api/users/:username<br>
+   e.g: /api/users/mitch123<br>
+   Returns a JSON object with the profile data for the specified user.
+  </p>
+   
+</body>
+
+</html>
