@@ -1,6 +1,6 @@
 ## NORTHCODERS NEWS BACKEND PROJECT
 
-Northcoders News is a project to show understanding in JavaScript. In this backend section, I have built a restful API using mongoDB to store the data, express to build the server and mongoose to retrieve and manipulate the data.
+Northcoders News is a project to show understanding in JavaScript project development. In this backend section, I have built a restful API using mongoDB to store the data, express to build the server and mongoose to retrieve and manipulate the data.
 Below are some of the mongoose models used in this API:
 
 - [find](http://mongoosejs.com/docs/api.html#model_Model.find)
@@ -35,7 +35,7 @@ git clone https://github.com/matt6gsr/BE2-northcoders-news
 To install all required dependencies, run the command:
 
 ```
-npm i
+npm install
 ```
 
 Please check you have mongoDB installed:
@@ -157,9 +157,9 @@ To begin testing, stop the express server from running:
 ctrl & c
 ```
 
-Note: make sure mongodb is still running at this time.
+Note: make sure mongodb is still listening at this time.
 
-There are 3 seperate databases; one for development, one for testing and one for production. The development database is seeded by default. The test database is seeded when testing automatically. The production database is hosted and seeded seperately.
+There are 3 seperate databases; one for development, one for testing and one for production. The development database is seeded by default. The test database is seeded when testing, automatically. The production database is hosted and seeded seperately.
 
 The test file is located in the `spec` folder and is named `index.spec.js`
 
@@ -171,7 +171,7 @@ npm test
 
 This will run all the tests, one by one.
 
-To only run tests on certain end points, insert `.only` after `describe`:
+To only run tests on certain end points, open the `index.spec.js` file and insert `.only` after `describe` within the desired endpoint:
 
 ```
 describe('/topics', () => {
@@ -183,7 +183,7 @@ becomes
 describe.only('/topics', () => {
 ```
 
-To run specific tests for individual queries, insert `.only` after `it`:
+To run specific tests for individual queries, open the `index.spec.js` file and insert `.only` after `it` in the desired test:
 
 ```
 it('GET returns an array of objects containing all topics and a status code 200', () => {
@@ -199,13 +199,11 @@ Note: Remember to remove the `.only` from the tests when finished.
 
 ## Hosting
 
-[Heroku](https://www.heroku.com) is a hosting website where projects like these can be uploaded; providing an enviroment outside of localhost to navigate the end points through your favorite web browser. The database is not seeded on Heroku. This is done on [mLab](https://mlab.com/) and negates the need for the user to download and create a database locally.
+[Heroku](https://www.heroku.com) is a hosting website where projects like these can be uploaded; providing an enviroment outside of localhost to navigate the end points through your favorite web browser via an internet connection. The database is not seeded on Heroku. This is done on [mLab](https://mlab.com/) and negates the need for the user to download and create a database locally.
 
 My API is availible via the link below:
 
 [heroku link here]()
-
-The mongoDB database seed is hosted at [mLab](https://mlab.com/).
 
 ## Acknowledgments
 

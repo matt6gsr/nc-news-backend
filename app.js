@@ -1,15 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const apiRouter = require('./routes/api-router');
-const DB_URL = process.env.DB_URL || require('./config.js');
 const bodyParser = require('body-parser');
+const apiRouter = require('./routes/api-router');
 const {
   handle404,
   handle400Params,
   handle400Post,
   handle500
 } = require('./errors');
+const DB_URL = process.env.DB_URL || require('./config.js');
 
 mongoose
   .connect(DB_URL)
@@ -27,8 +27,12 @@ app.get('/', (req, res, next) => {
   res.status(200).render('index');
 });
 
+app.get('/api', (req, res, next) => {
+  res.status(200).render('index');
+});
+
 app.get('/*', (req, res) => {
-  res.status(404).send({ msg: 'Page Not Found....!' });
+  res.status(404).render('error');
 });
 
 app.use(handle404);
