@@ -1,5 +1,13 @@
 const { Comments } = require('../models');
 
+const getComments = (req, res, next) => {
+  Comments.find(null, '-__v')
+    .then(comments => {
+      res.status(200).send({ comments });
+    })
+    .catch(next);
+};
+
 const deleteComment = (req, res, next) => {
   Comments.findByIdAndRemove(req.params.comment_id)
     .then(comment => {
@@ -31,4 +39,4 @@ const rateComment = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { deleteComment, rateComment };
+module.exports = { getComments, deleteComment, rateComment };

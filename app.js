@@ -32,7 +32,7 @@ app.get('/api', (req, res, next) => {
 });
 
 app.get('/*', (req, res) => {
-  res.status(404).render('error');
+  res.status(404).send({ msg: 'Page Not Found' });
 });
 
 app.use(handle404);

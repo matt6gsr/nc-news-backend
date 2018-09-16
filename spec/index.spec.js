@@ -31,7 +31,7 @@ describe('/api', () => {
         .get('/topic')
         .expect(404)
         .then(res => {
-          expect(res.body.msg).to.equal('Page Not Found....!');
+          expect(res.body.msg).to.equal('Page Not Found');
         });
     });
   });
@@ -168,7 +168,7 @@ describe('/api', () => {
         .get('/api/article')
         .expect(404)
         .then(res => {
-          expect(res.body.msg).to.equal('Page Not Found....!');
+          expect(res.body.msg).to.equal('Page Not Found');
         });
     });
   });
