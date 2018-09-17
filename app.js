@@ -9,7 +9,7 @@ const {
   handle400Post,
   handle500
 } = require('./errors');
-const DB_URL = process.env.DB_URL || require('./config.js');
+const DB_URL = process.env.DB_URL || require('./config.js').DB_URL;
 
 mongoose
   .connect(DB_URL)
