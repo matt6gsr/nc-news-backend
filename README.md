@@ -209,7 +209,7 @@ Note: Remember to remove the `.only` from the tests when finished.
 
 My API is availible via the link below:
 
-[heroku link here]()
+[My app hosted on Heroku](https://ncnews-matt6gsr.herokuapp.com/)
 
 ## Links
 

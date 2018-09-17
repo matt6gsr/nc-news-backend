@@ -7,8 +7,7 @@
     "test": "mocha spec",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "seed:dev": "node ./seed/run-seed.js",
-    "seed:prod": "NODE_ENV=production node ./seed/run-seed.js"
+    "seed:dev": "node ./seed/run-seed.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +15,7 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
+    "heroku": "^7.16.0",
     "mongoose": "^5.0.14"
   },
   "devDependencies": {
