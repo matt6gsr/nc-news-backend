@@ -4,7 +4,7 @@ const {
   getTopics,
   getTopicArticles,
   postArticleToTopic
-} = require('../controllers/topics');
+} = require('../controllers/topics-controller');
 
 topicsRouter.route('/').get(getTopics);
 

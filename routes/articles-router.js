@@ -6,7 +6,7 @@ const {
   getCommentsForArticle,
   postCommentToArticle,
   rateArticle
-} = require('../controllers/articles');
+} = require('../controllers/articles-controller');
 
 articlesRouter.route('/').get(getArticles);
 

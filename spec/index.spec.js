@@ -194,8 +194,7 @@ describe('/api', () => {
         .get('/api/articles/5b9925e956599b430f57bec0')
         .expect(404)
         .then(res => {
-          //console.log(res);
-          expect(res.body.msg).to.equal('ID Not Found');
+          expect(res.body.msg).to.equal('Page Not Found');
         });
     });
     it('GET returns a 400 error code for a invaild mongo id', () => {
@@ -257,7 +256,6 @@ describe('/api', () => {
         .get(`/api/articles/${articles[0]._id}/comments`)
         .expect(200)
         .then(res => {
-          //console.log(res);
           expect(res.body.comments.length).to.equal(2);
         });
     });

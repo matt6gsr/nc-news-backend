@@ -1,50 +1,40 @@
 ## NORTHCODERS NEWS BACKEND PROJECT
 
-Northcoders News is a project to show understanding in JavaScript project development. In this backend section, I have built a restful API using MongoDB to store the data, express to build the server and mongoose to retrieve and manipulate the data.
-Below are some of the mongoose models used in this API:
+Northcoders News is a project to show understanding in JavaScript project development. In this backend section, I have built a restful API using MongoDB to store the data, express to build the server and mongoose to retrieve and manipulate the data. My hosted API is availible via the link below:
 
-- [find](http://mongoosejs.com/docs/api.html#model_Model.find)
-- [findOne](http://mongoosejs.com/docs/api.html#model_Model.findOne)
-- [findOneAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate)
-- [findOneAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findOneAndRemove)
-- [findById](http://mongoosejs.com/docs/api.html#model_Model.findById)
-- [findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate)
-- [findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove)
-- [update](http://mongoosejs.com/docs/api.html#model_Model.update)
-- [create](https://mongoosejs.com/docs/api.html#model_Model.create)
-- [remove](http://mongoosejs.com/docs/api.html#model_Model-remove)
-- [save](http://mongoosejs.com/docs/api.html#model_Model-save)
-- [count](http://mongoosejs.com/docs/api.html#model_Model.count)
-- [populate](https://mongoosejs.com/docs/api.html#model_Model.populate)
+[Northcoders News](https://ncnews-matt6gsr.herokuapp.com/)
 
 ## Getting Started
 
-To interact with this API on your local machine please visit my github repo here:
-
-```http
-https://github.com/matt6gsr/BE2-northcoders-news
-```
-
-Please fork this repo.
-Once forked, clone the repo address and using the terminal window run the command:
+To start running the written tests, clone the repo address and using the terminal window run the command:
 
 ```
 git clone https://github.com/matt6gsr/BE2-northcoders-news
 ```
 
-CD into this repo/folder. To install the required dependencies, run the command:
+Node.js is required to run this server. To check node is installed om your machine, in the terminal run the command:
+
+```
+node -v
+```
+
+If Node.js is not installed on your machine, please visit the link below for installation instructions
+
+[Node.js](https://nodejs.org/en/download/)
+
+CD into this repo/folder:
+
+```
+cd BE2-northcoders-news
+```
+
+To install the required dependencies, run the command:
 
 ```
 npm install
 ```
 
-MongoDB is not a dependency, it is a database type and won't be installed automatically.
-
-More infomation on MongoDB can be found in the link below:
-
-- [MongoDB Website](https://www.mongodb.com/)
-
-To check this is installed on your machine, run the command:
+MongoDB is not a dependency, it is a database type and won't be installed automatically. To check this is installed on your machine, run the command:
 
 ```
 mongo -version
@@ -203,14 +193,6 @@ it.only('GET returns an array of objects containing all topics and a status code
 
 Note: Remember to remove the `.only` from the tests when finished.
 
-## Hosting
-
-[Heroku](https://www.heroku.com) is a hosting website where projects like this can be uploaded; providing an enviroment outside of localhost to navigate the end points through your favorite web browser via an internet connection. The database is not seeded on Heroku. This is done on [mLab](https://mlab.com/) and negates the need for the user to download and create a database locally.
-
-My API is availible via the link below:
-
-[My app hosted on Heroku](https://ncnews-matt6gsr.herokuapp.com/)
-
 ## Links
 
 - [Node](https://nodejs.org/en/)
@@ -230,4 +212,4 @@ My API is availible via the link below:
 
 ## Acknowledgments
 
-Paul R, Mitch, Paul C, Vel and all the Northcoders tutors that have helped me build this API, and with my journey so far. You're AWESOME!
+Author: Matt Hamilton

@@ -4,10 +4,13 @@ const getArticles = (req, res, next) => {
   Article.find()
     .populate('created_by', '-__v')
     .then(articles => {
+      // @ts-ignore
       return Promise.all([
         articles,
         ...articles.map(article => {
-          const commentCount = Comments.count({ belongs_to: article._id });
+          const commentCount = Comments.count({
+            belongs_to: article._id
+          });
           return commentCount;
         })
       ]);
@@ -34,21 +37,25 @@ const getArticleById = (req, res, next) => {
       if (!commentCount || commentCount < 0) {
         throw { status: 404 };
       } else
-        return Article.findById(req.params.article_id, '-__v')
-          .populate('created_by', '-_id')
-          .then(articleOne => {
-            const article = { ...articleOne._doc, commentCount };
-            if (!article) {
-              throw { msg: 'Article Not Found', status: 404 };
-            } else res.status(200).send({ article });
-          });
+        return Promise.all([
+          Article.findById(req.params.article_id, '-__v').populate(
+            'created_by'
+          ),
+          commentCount
+        ]);
+    })
+    .then(([articleOne, commentCount]) => {
+      const article = { ...articleOne._doc, commentCount };
+      if (!article) {
+        throw { msg: 'Article Not Found', status: 404 };
+      } else res.status(200).send({ article });
     })
     .catch(next);
 };
 
 const getCommentsForArticle = (req, res, next) => {
   Article.findById(req.params.article_id, '-__v')
-    .populate('created_by', '-_id name')
+    .populate('created_by')
     .then(article => {
       if (!article) {
         throw { msg: 'Article Not Found', status: 404 };
