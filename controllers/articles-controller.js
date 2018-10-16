@@ -25,7 +25,7 @@ const getArticles = (req, res, next) => {
         })
       ])
         .then(([newArticles]) => {
-          res.status(200).send(newArticles);
+          res.status(200).send({ articles: newArticles });
         })
         .catch(next);
     });
