@@ -23,6 +23,7 @@ const postArticleToTopic = (req, res, next) => {
   const newArticle = req.body;
   newArticle.belongs_to = topic_slug;
   return Topic.findOne({ slug: topic_slug })
+    .populate('created_by', '-__v')
     .then(articleMatch => {
       if (!articleMatch) {
         throw { msg: 'Topic not found, cannot post', status: 404 };
