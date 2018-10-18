@@ -189,7 +189,7 @@ describe('/api', () => {
           expect(res.body.article.commentCount).to.equal(2);
         });
     });
-    it('GET returns a 404 error code for a vaild format id but that id does not exist in database', () => {
+    it.only('GET returns a 404 error code for a vaild format id but that id does not exist in database', () => {
       return request
         .get('/api/articles/5b9925e956599b430f57bec0')
         .expect(404)

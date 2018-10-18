@@ -34,15 +34,10 @@ const getArticles = (req, res, next) => {
 const getArticleById = (req, res, next) => {
   Comments.count({ belongs_to: req.params.article_id })
     .then(commentCount => {
-      if (!commentCount || commentCount < 0) {
-        throw { status: 404 };
-      } else
-        return Promise.all([
-          Article.findById(req.params.article_id, '-__v').populate(
-            'created_by'
-          ),
-          commentCount
-        ]);
+      return Promise.all([
+        Article.findById(req.params.article_id, '-__v').populate('created_by'),
+        commentCount
+      ]);
     })
     .then(([articleOne, commentCount]) => {
       const article = { ...articleOne._doc, commentCount };
