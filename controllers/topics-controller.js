@@ -10,7 +10,7 @@ const getTopics = (req, res, next) => {
 
 const getTopicArticles = (req, res, next) => {
   Article.find({ belongs_to: req.params.topic_slug }, '-__v')
-    .populate('created_by', '-_id -__v')
+    .populate('created_by', ' -__v')
     .then(articles => {
       if (articles.length === 0) throw { msg: 'Topic Not Found', status: 404 };
       else res.status(200).send({ articles });

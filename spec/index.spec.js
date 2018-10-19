@@ -146,10 +146,10 @@ describe('/api', () => {
         .get('/api/articles')
         .expect(200)
         .then(res => {
-          expect(res.body[0].title).to.equal(
+          expect(res.body.articles[0].title).to.equal(
             'Living in the shadow of a great man'
           );
-          expect(res.body.length).to.equal(4);
+          expect(res.body.articles.length).to.equal(4);
         });
     });
     it('GET returns a comment count for each article and a status code 200', () => {
@@ -157,10 +157,10 @@ describe('/api', () => {
         .get('/api/articles')
         .expect(200)
         .then(res => {
-          expect(res.body[0].comments).to.equal(2);
-          expect(res.body[1].comments).to.equal(2);
-          expect(res.body[2].comments).to.equal(2);
-          expect(res.body[3].comments).to.equal(2);
+          expect(res.body.articles[0].comments).to.equal(2);
+          expect(res.body.articles[1].comments).to.equal(2);
+          expect(res.body.articles[2].comments).to.equal(2);
+          expect(res.body.articles[3].comments).to.equal(2);
         });
     });
     it('GET responds with a 404 for an invalid route', () => {
@@ -189,12 +189,12 @@ describe('/api', () => {
           expect(res.body.article.commentCount).to.equal(2);
         });
     });
-    it.only('GET returns a 404 error code for a vaild format id but that id does not exist in database', () => {
+    it('GET returns a 404 error code for a vaild format id but that id does not exist in database', () => {
       return request
         .get('/api/articles/5b9925e956599b430f57bec0')
         .expect(404)
         .then(res => {
-          expect(res.body.msg).to.equal('Page Not Found');
+          expect(res.body.msg).to.equal('Article Not Found');
         });
     });
     it('GET returns a 400 error code for a invaild mongo id', () => {

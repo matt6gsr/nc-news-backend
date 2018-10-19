@@ -40,10 +40,12 @@ const getArticleById = (req, res, next) => {
       ]);
     })
     .then(([articleOne, commentCount]) => {
-      const article = { ...articleOne._doc, commentCount };
-      if (!article) {
+      if (!articleOne) {
         throw { msg: 'Article Not Found', status: 404 };
-      } else res.status(200).send({ article });
+      } else {
+        const article = { ...articleOne._doc, commentCount };
+        res.status(200).send({ article });
+      }
     })
     .catch(next);
 };

@@ -36,7 +36,7 @@ app.get('/api', (req, res, next) => {
   res.status(200).render('index');
 });
 
-app.get('/*', (err, req, res, next) => {
+app.get('/*', (req, res, next) => {
   res.status(404).send({ msg: 'Page Not Found' });
 });
 
