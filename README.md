@@ -9,10 +9,10 @@ Northcoders News is a project to show understanding in JavaScript project develo
 To start running the written tests, clone the repo address and using the terminal window run the command:
 
 ```
-git clone https://github.com/matt6gsr/BE2-northcoders-news
+git clone https://github.com/matt6gsr/nc-news-backend
 ```
 
-Node.js is required to run this server. To check node is installed om your machine, in the terminal run the command:
+Node.js is required to run this server. To check node is installed on your machine, in the terminal run the command:
 
 ```
 node -v
@@ -25,7 +25,7 @@ If Node.js is not installed on your machine, please visit the link below for ins
 CD into this repo/folder:
 
 ```
-cd BE2-northcoders-news
+cd nc-news-backend
 ```
 
 To install the required dependencies, run the command:
